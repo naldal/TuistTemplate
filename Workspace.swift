@@ -1,8 +1,9 @@
-//
-//  Workspace.swift
-//  ProjectDescriptionHelpers
-//
-//  Created by 송하민 on 2023/06/11.
-//
+import ProjectDescription
 
-import Foundation
+let workspaceName = "workspace"
+let workspace = Workspace(
+  name: workspaceName,
+  projects: [
+    "Projects/*"
+  ]
+)

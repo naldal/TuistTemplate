@@ -2,10 +2,9 @@ import ProjectDescription
 import ProjectDescriptionHelpers
 
 let project = Project.makeModule(
-    name: "Core",
+    name: "CoreUIPreview",
     platform: .iOS,
     product: .app,
     dependencies: [],
-    resources: ["Resources/**"],
-    infoPlist: .file(path: "Support/Info.plist")
+    infoPlist: .default
 )
