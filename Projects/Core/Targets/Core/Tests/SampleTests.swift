@@ -7,7 +7,6 @@
 //
 
 import XCTest
-@testable import WemixAuthenticator
 
 class SampleTests: XCTestCase {
   

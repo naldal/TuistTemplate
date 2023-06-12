@@ -9,10 +9,10 @@ import ProjectDescription
 
 extension Project {
   
-  public static func makeFramework(
+  public static func makeFrameworkTargets(
     name: String,
     frameworkType: Product = .staticFramework,
-    baseBundleId: String,
+    baseBundleId: String = "com.tuistTemplate",
     customInfoPlist: InfoPlist,
     scripts: [TargetScript],
     dependencies: [TargetDependency],
@@ -25,31 +25,31 @@ extension Project {
       product: frameworkType,
       bundleId: "\(baseBundleId).\(name)",
       infoPlist: customInfoPlist,
-      sources: ["Sources/**"],
-      resources: ["Resources/**"],
+      sources: ["Targets/\(name)/Sources/**"],
+      resources: ["Targets/\(name)/Resources/**"],
       scripts: scripts,
       dependencies: dependencies
     )
     
     let testTarget = Target(
-      name: name,
+      name: "\(name)Tests",
       platform: .iOS,
       product: .unitTests,
       bundleId: "\(baseBundleId).\(name)Tests",
       infoPlist: .default,
-      sources: ["Sources/**"],
-      resources: ["Resources/**"],
+      sources: ["Targets/\(name)/Sources/**"],
+      resources: ["Targets/\(name)/Resources/**"],
       dependencies: [.target(name: name)] + testDependencies
     )
     
     let sampleApp = Target(
-      name: name,
+      name: "\(name)SampleApp",
       platform: .iOS,
       product: .app,
       bundleId: "\(baseBundleId).\(name)SampleApp",
       infoPlist: customInfoPlist,
-      sources: ["Sources/**"],
-      resources: ["Resources/**"],
+      sources: ["Targets/\(name)/Sources/**"],
+      resources: ["Targets/\(name)/Resources/**"],
       dependencies: [.target(name: name)]
     )
     

@@ -37,7 +37,7 @@ public extension Project {
     // MARK: - Declare origin name
     
     /// the origin name is relavent with your 'Core' Project.
-    /// When you change your name of Core, then you have to change this origin name as well.
+    /// When you change your name of Core Project, you have to change this origin name as well.
     var originName: String {
       return "Core"
     }
