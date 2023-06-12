@@ -1,16 +1,11 @@
-//
-//  Project.swift
-//  ProjectDescriptionHelpers
-//
-//  Created by Russell Hamin Song on 2023/06/12.
-//
-
 import ProjectDescription
+import ProjectDescriptionHelpers
 
 let projectName = "CoreNetwork"
 let project = Project.makeModule(
-    name: projectName,
-    platform: .iOS,
-    product: .app,
-    dependencies: []
+  name: projectName,
+  product: .staticFramework,
+  additionalTargets: [],
+  additionalSourcePaths: [],
+  additionalResourcePaths: []
 )

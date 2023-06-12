@@ -1,11 +1,11 @@
-//
-//  Project.swift
-//  ProjectDescriptionHelpers
-//
-//  Created by Russell Hamin Song on 2023/06/12.
-//
-
 import ProjectDescription
+import ProjectDescriptionHelpers
 
 let projectName: String = "CoreDev"
-let project = Project(name: projectName)
+let project = Project.makeModule(
+  name: projectName,
+  product: .app,
+  additionalTargets: [],
+  additionalSourcePaths: [],
+  additionalResourcePaths: []
+)
