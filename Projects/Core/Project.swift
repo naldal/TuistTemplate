@@ -1,11 +1,16 @@
 import ProjectDescription
 import ProjectDescriptionHelpers
 
+let projectName = "Core"
 let project = Project.makeModule(
-    name: "Core",
-    platform: .iOS,
-    product: .app,
-    dependencies: [],
-    resources: ["Resources/**"],
-    infoPlist: .file(path: "Support/Info.plist")
+  name: projectName,
+  platform: .iOS,
+  product: .app,
+  dependencies: [],
+  resources: ["Resources/**"],
+  bridgingHeaderPath: "Support/BridgingHeader/Core-Bridging-Header.h",
+  customInfoPlist: .file(path: "Support/InfoPlist/Info.plist"),
+  additionalTargets: [],
+  additionalSourcePaths: [],
+  additionalResourcePaths: []
 )

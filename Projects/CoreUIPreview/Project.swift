@@ -1,8 +1,9 @@
 import ProjectDescription
 import ProjectDescriptionHelpers
 
+let projectName = "CoreUIPreview"
 let project = Project.makeModule(
-    name: "CoreUIPreview",
+    name: projectName,
     platform: .iOS,
     product: .app,
     dependencies: [],
