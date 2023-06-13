@@ -28,9 +28,7 @@ public extension Project {
     testDependencies: [TargetDependency] = [],
     bridgingHeaderPath: String? = nil,
     customInfoPlist: InfoPlist = .default,
-    additionalTargets: [String],
-    additionalSourcePaths: [String],
-    additionalResourcePaths: [String]
+    additionalTargets: [String]
   ) -> Project {
     
     
@@ -45,6 +43,14 @@ public extension Project {
     
     // MARK: - Targets
     
+    let targetAdditionalSourcePath: [String] = [
+      "../\(originName)/Targets/\(originName)/Sources/**"
+    ]
+    
+    let targetAdditionalResourcePath: [String] = [
+      "../\(originName)/Targets/\(originName)/Resources/**"
+    ]
+    
     let targets: [Target] = self.makeTargets(
       targetName: name,
       originName: originName,
@@ -54,8 +60,8 @@ public extension Project {
       deploymentTarget: deploymentTarget,
       dependencies: dependencies,
       testDependencies: testDependencies,
-      additionalSourcePaths: additionalSourcePaths,
-      additionalResourcePaths: additionalResourcePaths
+      additionalSourcePaths: targetAdditionalSourcePath,
+      additionalResourcePaths: targetAdditionalResourcePath
     )
     
     

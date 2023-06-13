@@ -13,7 +13,5 @@ let project = Project.makeModule(
   dependencies: [],
   bridgingHeaderPath: "Support/BridgingHeader/Core-Bridging-Header.h",
   customInfoPlist: .file(path: "Support/InfoPlist/Info.plist"),
-  additionalTargets: [],
-  additionalSourcePaths: [],
-  additionalResourcePaths: []
+  additionalTargets: []
 )
