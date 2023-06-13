@@ -2,20 +2,28 @@ import ProjectDescription
 
 public extension Project {
   
+  /// This method operates based on folder hierarchy.
+  /// Please pay attention to the instructions in order to create your modules and workspace effectively.
   ///
-  /// This method force the folders hiearchy.
-  /// Be aware the description to make your modules and workspace.
+  /// Firstly, you need to create "Sources" and "Resources" folders within your ${Core project folder}/Targets/${Core target folder}.
+  /// Consequently, you should also create the "Targets" and "Core target folder".
   ///
-  /// At First, you have to make Sources and Resources folder in your **Core project folder/Targets/Core target folder**
-  /// so you have to make Targets and Core target folder as well.
-  /// e.g. ${Root}/Projects/${Core Project Name}/Targets/${Core Project Name}/Sources and Resources
+  /// For example:
+  /// ${Root}/Projects/${Core Project Name}/Targets/${Core Project Name}/Sources
+  /// ${Root}/Projects/${Core Project Name}/Targets/${Core Project Name}/Resources
   ///
-  /// Second, Your custom Info.Plist, Header and scripts must be located in **Core project folder/Support folder**
-  /// e.g. ${Root}/Projects/${Core Project Name}/Support
+  /// Secondly, your custom info.Plist, headers and other support files should be located in the Core project folder/Support folder.
   ///
-  /// Third, this method support to make build settings based on .xcconfig.
-  /// So you have to make proper .xcconfig for each Configurations.
+  /// For example:
+  /// ${Root}/Projects/${Core Project Name}/Support/Common.h
+  /// ${Root}/Projects/${Core Project Name}/Support/info.Plist
   ///
+  /// Thirdly, this method supports the creation of build settings based on .xcconfig files.
+  /// Therefore, you need to create appropriate .xcconfig files for each configuration.
+  /// Your xcconfig file should be located in your Target/XCConfigs folder
+  ///
+  /// For example:
+  /// ${Root}/Projects/${Core Project Name}/Targets/${Core target Name}/XCConfigs/Core.xcconfig
   static func makeModule(
     name: String,
     platform: Platform = .iOS,
