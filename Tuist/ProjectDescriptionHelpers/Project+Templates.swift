@@ -165,8 +165,10 @@ public extension Project {
       }
     }()
     
-    // make your own scripts
-    let scripts: [TargetScript] = []
+    // add your own scripts
+    let scripts: [TargetScript] = [
+      .pre(script: "../Tool/swiftlint --config \"../\(originName)/Targets/\(originName)/Resources/swiftlint.yml\"", name: "Lint")
+    ]
     
     let mainTarget = Target(
       name: targetName,
@@ -177,7 +179,6 @@ public extension Project {
       infoPlist: .file(path: "../\(originName)/Support/InfoPlist/Info.plist"),
       sources: sources,
       resources: resources,
-//      entitlements: "../\(originName)/Support/Entitlement/\(originName).entitlement",
       scripts: scripts,
       dependencies: dependencies
     )
@@ -191,7 +192,6 @@ public extension Project {
       infoPlist: .file(path: "../\(originName)/Support/InfoPlist/Info.plist"),
       sources: ["../\(originName)/Targets/\(originName)/Tests/**"],
       resources: ["../\(originName)/Targets/\(originName)/TestResources/**"],
-//      entitlements: "../\(originName)/Support/Entitlement/\(originName).entitlement",
       dependencies: testDependencies
     )
     
