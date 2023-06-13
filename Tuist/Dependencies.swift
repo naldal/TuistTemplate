@@ -13,7 +13,7 @@ let dependencies = Dependencies(
     .remote(url: "https://github.com/Quick/Quick.git", requirement: .branch("master")),
     .remote(url: "https://github.com/Quick/Nimble.git", requirement: .branch("main"))
   ], productTypes: [
-    "Quick": .staticFramework,
-    "Nimble": .staticFramework
+    "Quick": .framework,
+    "Nimble": .framework
   ])
 )

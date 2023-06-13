@@ -5,5 +5,6 @@ let projectName = "CoreUIPreview"
 let project = Project.makeModule(
   name: projectName,
   product: .app,
-  additionalTargets: []
+  additionalTargets: [],
+  isIncludeOnly: true
 )

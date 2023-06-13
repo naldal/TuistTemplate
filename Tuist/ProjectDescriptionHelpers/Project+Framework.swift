@@ -19,7 +19,11 @@ extension Project {
   ) -> [Target] {
     
     let scripts: [TargetScript] = [
-      .pre(script: "../Tool/Lint/swiftlint --config \"../Tool/Lint/swiftlint.yml\"", name: "Lint")
+      TargetScript.makeScript(
+        order: .pre,
+        scriptPath: "../Tool/Lint/swiftlint --config \"../Tool/Lint/swiftlint.yml\"",
+        name: "Lint"
+      )
     ]
     
     let mainTarget = Target(

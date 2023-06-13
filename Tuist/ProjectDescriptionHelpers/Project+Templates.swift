@@ -36,7 +36,8 @@ public extension Project {
     testDependencies: [TargetDependency] = [],
     bridgingHeaderPath: String? = nil,
     customInfoPlist: InfoPlist = .default,
-    additionalTargets: [String]
+    additionalTargets: [String],
+    isIncludeOnly: Bool = false
   ) -> Project {
     
     
@@ -69,7 +70,8 @@ public extension Project {
       dependencies: dependencies,
       testDependencies: testDependencies,
       additionalSourcePaths: targetAdditionalSourcePath,
-      additionalResourcePaths: targetAdditionalResourcePath
+      additionalResourcePaths: targetAdditionalResourcePath,
+      isIncludeOnly: isIncludeOnly
     )
     
     
@@ -126,14 +128,17 @@ public extension Project {
     dependencies: [TargetDependency],
     testDependencies: [TargetDependency],
     additionalSourcePaths: [String],
-    additionalResourcePaths: [String]
+    additionalResourcePaths: [String],
+    isIncludeOnly: Bool
   ) -> [Target] {
     
     let sources: SourceFilesList = {
       if targetName != originName {
         let globs: [SourceFileGlob] = {
           var returnValue: [SourceFileGlob] = []
-          returnValue.append(SourceFileGlob.glob("../\(targetName)/Targets/\(targetName)/Sources/**"))
+          if isIncludeOnly == false {
+            returnValue.append(SourceFileGlob.glob("../\(targetName)/Targets/\(targetName)/Sources/**"))
+          }
           for additionalSourcePath in additionalSourcePaths {
             returnValue.append(.glob(
               Path(additionalSourcePath),
@@ -156,7 +161,9 @@ public extension Project {
     let resources: ResourceFileElements = {
       if targetName != originName {
         var returnValue: [String] = additionalResourcePaths
-        returnValue.append("../\(targetName)/Targets/\(targetName)/Resources/**")
+        if isIncludeOnly == false {
+          returnValue.append("../\(targetName)/Targets/\(targetName)/Resources/**")
+        }
         var elements: [ResourceFileElement] = []
         for item in returnValue {
           elements.append(.init(stringLiteral: item))
@@ -175,7 +182,11 @@ public extension Project {
     
     // add your own scripts
     let scripts: [TargetScript] = [
-      .pre(script: "../Tool/Lint/swiftlint --config \"../Tool/Lint/swiftlint.yml\"", name: "Lint")
+      TargetScript.makeScript(
+        order: .pre,
+        scriptPath: "../Tool/Lint/swiftlint --config \"../Tool/Lint/swiftlint.yml\"",
+        name: "Lint"
+      )
     ]
     
     let mainTarget = Target(
