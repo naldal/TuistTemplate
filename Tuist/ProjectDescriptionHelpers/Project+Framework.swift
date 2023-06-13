@@ -14,10 +14,13 @@ extension Project {
     frameworkType: Product = .staticFramework,
     baseBundleId: String = "com.tuistTemplate",
     customInfoPlist: InfoPlist,
-    scripts: [TargetScript],
     dependencies: [TargetDependency],
     testDependencies: [TargetDependency]
   ) -> [Target] {
+    
+    let scripts: [TargetScript] = [
+      .pre(script: "../Tool/Lint/swiftlint --config \"../Tool/Lint/swiftlint.yml\"", name: "Lint")
+    ]
     
     let mainTarget = Target(
       name: name,

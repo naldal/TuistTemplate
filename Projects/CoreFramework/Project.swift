@@ -7,7 +7,6 @@ let project = Project(
   targets: Project.makeFrameworkTargets(
     name: projectName,
     customInfoPlist: .default,
-    scripts: [],
     dependencies: [],
     testDependencies: [.quick, .nimble]
   )

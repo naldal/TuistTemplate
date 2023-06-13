@@ -167,7 +167,7 @@ public extension Project {
     
     // add your own scripts
     let scripts: [TargetScript] = [
-      .pre(script: "../Tool/swiftlint --config \"../\(originName)/Targets/\(originName)/Resources/swiftlint.yml\"", name: "Lint")
+      .pre(script: "../Tool/Lint/swiftlint --config \"../Tool/Lint/swiftlint.yml\"", name: "Lint")
     ]
     
     let mainTarget = Target(
